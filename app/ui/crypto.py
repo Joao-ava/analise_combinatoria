@@ -42,6 +42,28 @@ def EncryptScreen(master: tk.Widget):
     title = ttk.Label(frame, text="Encriptação", font=font_title_config)
     title.pack()
 
+    form_frame = ttk.Frame(frame)
+    form_frame.pack()
+
+    ttk.Label(form_frame, text="Chave: ").grid(row=0, column=0)
+    key_entry = ttk.Entry(form_frame)
+    key_entry.grid(row=0, column=1)
+
+    ttk.Label(form_frame, text="Frase original: ").grid(row=1, column=0)
+    text_entry = ttk.Entry(form_frame)
+    text_entry.grid(row=1, column=1)
+
+    result_text = ttk.Label(form_frame, )
+    result_text.grid(row=3, column=0)
+
+    def handle_submit():
+        crypt = Crypto.encrypt(int(key_entry.get()), text_entry.get())
+        result_text['text'] = crypt
+
+
+    button_submit = ttk.Button(form_frame, text="Encriptar", command=handle_submit)
+    button_submit.grid(row=2, column=0)
+
     frame.pack(fill='both', expand=True)
     return frame
 
