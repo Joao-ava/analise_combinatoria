@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from app.ui.crypto import CryptAnalyzeScreen, EncryptScreen, DecryptScreen
+from app.ui.plates import StateByPlateScreen
 
 
 def main():
@@ -14,6 +15,9 @@ def main():
     notebook.add(CryptAnalyzeScreen(notebook), text="CRIPTOANÁLISE")
     notebook.add(EncryptScreen(notebook), text="ENCRIPTAÇÃO")
     notebook.add(DecryptScreen(notebook), text="DECRIPTAÇÃO")
+
+    # projeto 2
+    notebook.add(StateByPlateScreen(notebook), text='Placas')
 
     notebook.grid(row=0, column=0)
 

@@ -4,6 +4,7 @@ from tkinter import ttk
 from app.crypto import Crypto
 from app.ui.styles import font_title_config
 
+
 def CryptAnalyzeScreen(master: tk.Widget):
     frame = ttk.Frame(master, padding=10)
 
