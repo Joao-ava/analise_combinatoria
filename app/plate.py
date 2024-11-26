@@ -37,8 +37,21 @@ piaui = [
 class Plate:
     @staticmethod
     def find_state(plate: str) -> str:
+        prefix = plate[:3]  
+        for start, end in ceara:
+            if start <= prefix <= end:
+                return 'Ceará'
+        
+        for start, end in maranhao:
+            if start <= prefix <= end:
+                return 'Maranhão'
+        
+        for start, end in piaui:
+            if start <= prefix <= end:
+                return 'Piauí'
+        
         return 'De nenhum dos estados'
-    
+
     @staticmethod
     def count_plates(plate_range) -> int:
         return 0
@@ -54,3 +67,5 @@ class Plate:
     @staticmethod
     def count_ma() -> str:
         return str(Plate.count_plates(piaui))
+
+
