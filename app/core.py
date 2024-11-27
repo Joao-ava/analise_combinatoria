@@ -83,3 +83,18 @@ def word_distance(first: Word, second: Word):
 
     return count
 
+def letters_distance(first: Word, second: Word) -> list:
+    """
+    Função para calcular a diferença entre as letras de duas palavras
+    """
+    if len(first.value) != len(second.value):
+        raise ValueError("Words must have the same length")
+
+    distance = []
+    for letter in range(len(first.value)):
+        diff = ord(second.value[letter]) - ord(first.value[letter])
+        if diff < 0:
+            diff = 26 + diff
+        print(diff)
+        distance.append(diff)
+    return distance
