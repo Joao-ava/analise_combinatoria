@@ -69,6 +69,32 @@ class Word:
 
     def __str__(self) -> str:
         return self.value
+    
+
+class EncryptWord(Word):
+    def __add__(self, other):
+        new_value = ''
+        for letter in self.value:
+            try:
+                index = alphabet.index(letter)
+                next_item = index + other
+                new_value += alphabet[next_item % len(alphabet)]
+            except ValueError:
+                new_value += letter
+        
+        return EncryptWord(new_value)
+
+    def __sub__(self, other):
+        new_value = ''
+        for letter in self.value:
+            try:
+                index = alphabet.index(letter)
+                next_item = index - other
+                new_value += alphabet[next_item % len(alphabet)]
+            except ValueError:
+                new_value += letter
+        
+        return EncryptWord(new_value)
 
 
 def word_distance(first: Word, second: Word):

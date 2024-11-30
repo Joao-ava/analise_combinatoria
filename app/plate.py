@@ -1,3 +1,6 @@
+from app.core import word_distance, Word
+
+
 ceara = [
     ('HTX', 'HZA'),
     ('NQL', 'NRE'),
@@ -62,7 +65,7 @@ class Plate:
         """
         total_plates = 0
         for start, end in plate_range:
-            prefix_count = word_distance(start, end) + 1
+            prefix_count = word_distance(Word(start), Word(end)) + 1
             total_plates += prefix_count * 26000
         return total_plates
 
