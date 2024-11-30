@@ -1,3 +1,4 @@
+import pyperclip
 import tkinter as tk
 from tkinter import ttk
 
@@ -26,7 +27,7 @@ def CryptAnalyzeScreen(master: tk.Widget):
     result_text.grid(row=3, column=0)
 
     def handle_submit():
-        key = Crypto.find_key(original_entry.get(), crypt_entry.get())
+        key = Crypto.find_key(original_entry.get().upper(), crypt_entry.get().upper())
         result_text['text'] = f'Chave: {key}'
 
 
@@ -58,12 +59,19 @@ def EncryptScreen(master: tk.Widget):
     result_text.grid(row=3, column=0)
 
     def handle_submit():
-        crypt = Crypto.encrypt(int(key_entry.get()), text_entry.get())
+        crypt = Crypto.encrypt(int(key_entry.get()), text_entry.get().upper())
         result_text['text'] = crypt
 
 
     button_submit = ttk.Button(form_frame, text="Encriptar", command=handle_submit)
     button_submit.grid(row=2, column=0)
+
+    def handle_copy():
+        pyperclip.copy(result_text['text'])
+
+
+    button_copy = ttk.Button(form_frame, text="Copiar", command=handle_copy)
+    button_copy.grid(row=2, column=1)
 
     frame.pack(fill='both', expand=True)
     return frame
@@ -90,7 +98,7 @@ def DecryptScreen(master: tk.Widget):
     result_text.grid(row=3, column=0)
 
     def handle_submit():
-        crypt = Crypto.decrypt(int(key_entry.get()), text_entry.get())
+        crypt = Crypto.decrypt(int(key_entry.get()), text_entry.get().upper())
         result_text['text'] = crypt
 
 
