@@ -54,6 +54,12 @@ class Plate:
 
     @staticmethod
     def count_plates(plate_range) -> int:
+        """
+        Calcula o número total de placas possíveis para um intervalo de prefixos.
+
+        :param plate_range: Lista de tuplas contendo os intervalos (ex.: [('HTX', 'HZA')]).
+        :return: Número total de placas possíveis.
+        """
         total_plates = 0
         for start, end in plate_range:
             prefix_count = word_distance(start, end) + 1
@@ -65,11 +71,22 @@ class Plate:
         return str(Plate.count_plates(ceara))
     
     @staticmethod
-    def count_pi() -> str:
+    def count_ma() -> str:
         return str(Plate.count_plates(maranhao))
     
     @staticmethod
-    def count_ma() -> str:
+    def count_pi() -> str:
         return str(Plate.count_plates(piaui))
 
+def word_distance(start: str, end: str) -> int:
+    """
+    Calcula a "distância alfabética" entre dois prefixos de placas.
 
+    :param start: Prefixo inicial (ex.: 'HTX'):)
+    :param end: Prefixo final (ex.: 'HZA'):)
+    :return: Número de posições alfabéticas entre os dois prefixos.
+    """
+    return ord(end[0]) - ord(start[0]) + \
+           (ord(end[1]) - ord(start[1])) * 26 + \
+           (ord(end[2]) - ord(start[2])) * 26 * 26
+    
