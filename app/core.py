@@ -1,3 +1,6 @@
+from itertools import cycle
+
+
 alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 num_to_char = {key:letter for key, letter in enumerate(alphabet)}
 char_to_num = {letter:key for key, letter in enumerate(alphabet)}
@@ -74,10 +77,11 @@ class Word:
 class EncryptWord(Word):
     def __add__(self, other):
         new_value = ''
-        for letter in self.value:
+        other_iter = cycle(other)
+        for letter, other_item in zip(self.value, other_iter):
             try:
                 index = alphabet.index(letter)
-                next_item = index + other
+                next_item = index + other_item
                 new_value += alphabet[next_item % len(alphabet)]
             except ValueError:
                 new_value += letter
@@ -86,10 +90,11 @@ class EncryptWord(Word):
 
     def __sub__(self, other):
         new_value = ''
-        for letter in self.value:
+        other_iter = cycle(other)
+        for letter, other_item in zip(self.value, other_iter):
             try:
                 index = alphabet.index(letter)
-                next_item = index - other
+                next_item = index - other_item
                 new_value += alphabet[next_item % len(alphabet)]
             except ValueError:
                 new_value += letter

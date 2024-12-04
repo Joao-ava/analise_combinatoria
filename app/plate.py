@@ -80,16 +80,4 @@ class Plate:
     @staticmethod
     def count_pi() -> str:
         return str(Plate.count_plates(piaui))
-
-def word_distance(start: str, end: str) -> int:
-    """
-    Calcula a "distância alfabética" entre dois prefixos de placas.
-
-    :param start: Prefixo inicial (ex.: 'HTX'):)
-    :param end: Prefixo final (ex.: 'HZA'):)
-    :return: Número de posições alfabéticas entre os dois prefixos.
-    """
-    return ord(end[0]) - ord(start[0]) + \
-           (ord(end[1]) - ord(start[1])) * 26 + \
-           (ord(end[2]) - ord(start[2])) * 26 * 26
     

@@ -28,6 +28,9 @@ def CryptAnalyzeScreen(master: tk.Widget):
 
     def handle_submit():
         key = Crypto.find_key(original_entry.get().upper(), crypt_entry.get().upper())
+        print(f'{key=}')
+        # if key == -1:
+        #     key = 'não encontrada'
         result_text['text'] = f'Chave: {key}'
 
 
@@ -59,7 +62,8 @@ def EncryptScreen(master: tk.Widget):
     result_text.grid(row=3, column=0)
 
     def handle_submit():
-        crypt = Crypto.encrypt(int(key_entry.get()), text_entry.get().upper())
+        key = [int(item) for item in key_entry.get()]
+        crypt = Crypto.encrypt(key, text_entry.get().upper())
         result_text['text'] = crypt
 
 
@@ -98,7 +102,8 @@ def DecryptScreen(master: tk.Widget):
     result_text.grid(row=3, column=0)
 
     def handle_submit():
-        crypt = Crypto.decrypt(int(key_entry.get()), text_entry.get().upper())
+        key = [int(item) for item in key_entry.get()]
+        crypt = Crypto.decrypt(key, text_entry.get().upper())
         result_text['text'] = crypt
 
 
